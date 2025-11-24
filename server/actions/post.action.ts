@@ -191,7 +191,7 @@ export async function createComment(content: string, postId: string) {
             if (post.authorId !== userId) {
                 await tx.notification.create({
                     data : {
-                        type: 'FOLLOW',
+                        type: 'COMMENT',
                         creatorId: userId,
                         userId: post.authorId,
                         commentId: newComment.id
