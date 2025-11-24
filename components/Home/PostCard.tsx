@@ -14,6 +14,7 @@ import Image from 'next/image'
 import { Button } from '../ui/button'
 import { Separator } from '../ui/separator'
 import { Textarea } from '../ui/textarea'
+import Link from 'next/link'
 
 type Posts = Awaited<ReturnType<typeof getPosts>>
 type Post = Posts[number]
@@ -103,11 +104,13 @@ const PostCard = ({post, dbUserId}: {post: Post, dbUserId: string | null}) => {
     <div className='my-5'>
         <Card>
             <CardHeader className='flex justify-between items-center'>
-                <div className='flex gap-3 overflow-x-hidden'>
-                    <Avatar className="mb-2 size-10">
-                        <AvatarImage src={post.author.image ||"https://github.com/shadcn.png"} className="rounded-full" />
-                        <AvatarFallback>CN</AvatarFallback>
-                    </Avatar>
+                <div className='flex gap-3 '>
+                    <Link href={`profile/${post.author.username || ""}`}>
+                        <Avatar className="mb-2 size-10">
+                            <AvatarImage src={post.author.image ||"https://github.com/shadcn.png"} className="rounded-full" />
+                            <AvatarFallback>CN</AvatarFallback>
+                        </Avatar>
+                    </Link>
 
                     <div className='flex flex-col gap-3'>
                         <div id="postInfo" className='flex gap-2'>
@@ -117,7 +120,7 @@ const PostCard = ({post, dbUserId}: {post: Post, dbUserId: string | null}) => {
                         </div>
 
                         <div id="posttitle" className=''>
-                            <p className=' text-ellipsis text-nowrap'>{post.content}</p>
+                            <p className=''>{post.content}</p>
                         </div>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import { Button } from '../ui/button';
 import { Avatar } from '../ui/avatar';
 import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import FollowButton from './FollowButton';
+import Link from 'next/link';
 
 const SuggestedUsers = async () => {
 
@@ -24,10 +25,12 @@ const SuggestedUsers = async () => {
             return (
               <div className="flex justify-between items-center" key={idx}>
                 <div className='flex gap-3 items-center'>
-                  <Avatar className="mb-2 size-10">
-                    <AvatarImage src={user.image ||"https://github.com/shadcn.png"} className="rounded-full" />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
+                  <Link href={`profile/${user.username || ""}`}>
+                    <Avatar className="mb-2 size-10">
+                      <AvatarImage src={user.image ||"https://github.com/shadcn.png"} className="rounded-full" />
+                      <AvatarFallback>CN</AvatarFallback>
+                    </Avatar>
+                  </Link>
 
                   <div>
                     <h3>{user.name}</h3>
