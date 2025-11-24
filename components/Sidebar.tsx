@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Separator } from "./ui/separator";
+import Link from "next/link";
 
 const Sidebar = async () => {
     const { isAuthenticated, userId } = await auth();
@@ -28,15 +29,17 @@ const Sidebar = async () => {
   return (
     <div className="sticky top-20">
       <Card>
-        <CardHeader className="flex flex-col gap-y-1 justify-center items-center text-center">
-            <Avatar className="mb-2">
-              <AvatarImage src={currentClerkUser.image || "https://github.com/shadcn.png"} />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
+        <Link href={`/profile/${currentClerkUser.username}`}>
+          <CardHeader className="flex flex-col gap-y-1 justify-center items-center text-center">
+              <Avatar className="mb-2 size-20">
+                <AvatarImage src={currentClerkUser.image || "https://github.com/shadcn.png"} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
 
-            <CardTitle className="text-lg font-semibold">{currentClerkUser?.username}</CardTitle>
-            <CardDescription className="text-sm">{currentClerkUser?.name}</CardDescription>
-        </CardHeader>
+              <CardTitle className="text-lg font-semibold">{currentClerkUser?.name}</CardTitle>
+              <CardDescription className="text-sm">{currentClerkUser?.username}</CardDescription>
+          </CardHeader>
+        </Link>
 
         <CardContent>
           <Separator className="my-4"/>
