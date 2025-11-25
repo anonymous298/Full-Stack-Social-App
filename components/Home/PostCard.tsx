@@ -137,7 +137,7 @@ const PostCard = ({post, dbUserId}: {post: Post, dbUserId: string | null}) => {
 
             <CardContent className='w-full relative '>
                 {/* <Image src={post.author.image} alt='Post content' fill={true} /> */}
-                <img src="https://github.com/shadcn.png" alt="img" className='w-full rounded-2xl' />
+                {post.image && <img src={post.image ? post.image : null} alt="Post content" className="w-full h-auto object-cover" />}
             </CardContent>
 
             <CardFooter className='flex flex-col items-start gap-y-3'>

@@ -2,8 +2,8 @@ import { getRandomUsers } from '@/server/actions/user.action'
 import React from 'react'
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
 import { Button } from '../ui/button';
-import { Avatar } from '../ui/avatar';
-import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+// import { AvatarFallback, AvatarImage } from '@radix-ui/react-avatar';
 import FollowButton from './FollowButton';
 import Link from 'next/link';
 
