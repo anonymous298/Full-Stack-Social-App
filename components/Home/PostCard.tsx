@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { Card, CardContent, CardFooter, CardHeader } from '../ui/card'
 import { AvatarFallback, Avatar, AvatarImage } from '../ui/avatar'
 import { Delete, DeleteIcon, Heart, Loader2Icon, MessageCircleIcon, SendIcon, Trash, Trash2Icon } from 'lucide-react'
-import { Post } from '@/app/generated/prisma/client'
+// import { Post } from '@/app/generated/prisma/client'
 import { useUser } from '@clerk/nextjs'
 import { createComment, deletePost, getPosts, toggleLike } from '@/server/actions/post.action'
 import toast from 'react-hot-toast'
@@ -19,7 +19,7 @@ import Link from 'next/link'
 type Posts = Awaited<ReturnType<typeof getPosts>>
 type Post = Posts[number]
 
-const PostCard = ({post, dbUserId}: {post: Post, dbUserId: string | null}) => {
+const PostCard = ({post, dbUserId}: {post: Post, dbUserId: string | null | Error}) => {
 
     const {user} = useUser();
     const [newComment, setNewComment] = useState('');

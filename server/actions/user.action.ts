@@ -1,5 +1,6 @@
 "use server"
 
+import { Prisma } from "@/app/generated/prisma/client";
 import prisma from "@/lib/prisma";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import { revalidatePath } from "next/cache";
@@ -73,7 +74,9 @@ export async function getDbUserId() {
   return currentUser.id
 }
 
-export async function getRandomUsers() {
+export async function getRandomUsers(): Promise<(Prisma.UserGetPayload<{
+include: { _count: { select: { followers: true } } }
+}>)[]>  {
   try {
     const userId = await getDbUserId();
 

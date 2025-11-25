@@ -11,7 +11,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { formatDistanceToNow } from "date-fns";
 
-type Notifications = Awaited<ReturnType<typeof getAllNotifications>>;
+import { NotificationWithRelations } from "@/server/actions/notification.action";
+
+type Notifications = NotificationWithRelations[];
 type Notification = Notifications[number];
 
 const getNotificationIcon = (type: string) => {
@@ -82,21 +84,23 @@ const Page = () => {
                   }`}
                 >
                   <Avatar className="mt-1">
-                    <AvatarImage src={notification.creator.image ?? "/avatar.png"} className="size-10" />
+                    <AvatarImage
+                      src={notification.creator?.image ?? "/avatar.png"}
+                      className="size-10"
+                    />
                   </Avatar>
                   <div className="flex-1 space-y-1">
                     <div className="flex items-center gap-2">
                       {getNotificationIcon(notification.type)}
                       <span>
                         <span className="font-medium">
-                          {notification.creator.name ?? notification.creator.username}
+                          {notification.creator?.name ?? notification.creator?.username ?? "Unknown User"}
                         </span>{" "}
                         {notification.type === "FOLLOW"
                           ? "started following you"
                           : notification.type === "LIKE"
                           ? "commented on your post"
-                          : "liked your post"
-                          }
+                          : "liked your post"}
                       </span>
                     </div>
 
