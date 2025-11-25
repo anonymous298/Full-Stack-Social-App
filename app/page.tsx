@@ -4,6 +4,7 @@ import AllPosts from "@/components/Home/AllPosts";
 import SuggestedUsers from "@/components/Home/SuggestedUsers";
 import { currentUser } from "@clerk/nextjs/server";
 import CreatePost from "@/components/Home/CreatePost";
+import UnauthenticatedUserSidebar from "@/components/UnauthenticatedUserSidebar";
 
 
 export default async function Home() {
@@ -18,7 +19,7 @@ export default async function Home() {
           <AllPosts/>
         </>
         :
-        <p>Sign In To see the content</p>}
+        <UnauthenticatedUserSidebar/>}
 
       </div>
 
